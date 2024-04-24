@@ -1,0 +1,89 @@
+
+import turtle
+
+
+class Figure:
+    def zobr(self):
+        a.color('red')
+
+    def stirannya(self):
+        if b.draw():
+            b.color('white')
+            b.draw()
+
+    def setpos(self,x ,y):
+        a.up()
+        a.setposition(x, y)
+        a.down()
+
+    def getpos(self):
+        print(a.pos())
+
+
+    def color(self, color):
+        a.color(color)
+
+    def draw(self):
+        a.down()
+class Kolo(Figure):
+    def draw(self):
+        a.circle(10)
+class Trikutnik(Figure):
+    def draw(self):
+        for i in range(3):
+            a.forward(side2)
+            a.left(120)
+class Pryamokutnik(Figure):
+    def draw(self):
+        for i in range(2):
+            a.forward(100)
+            a.left(90)
+            a.forward(50)
+            a.left(90)
+class Kvadrat(Pryamokutnik):
+    def draw(self):
+        for i in range(4):
+            a.forward()
+            a.left(90)
+class Trapezia(Figure):
+    def draw(self, n = 0):
+        a.left(180)
+        a.forward(50)
+        a.right(120)
+        a.forward(30)
+        a.right(60)
+        a.forward(50)
+        a.up()
+        a.setpos(0, n)
+        a.down()
+        a.forward(50)
+        a.left(120)
+        a.forward(30)
+        a.left(60)
+        a.forward(50)
+
+
+class Car:
+    def draw(self):
+        a = Kolo()
+        b = Pryamokutnik()
+        c = Trapezia()
+        b.setpos(-50,-25)
+        b.draw()
+        a.setpos(-25, -45)
+        a.draw()
+        a.setpos(25, -45)
+        a.draw()
+        c.setpos(0, 25)
+        c.draw(25)
+
+
+
+a = turtle.Turtle()
+w = turtle.Screen()
+
+
+l = Car()
+l.draw()
+
+w.mainloop()
