@@ -1,89 +1,135 @@
 
-import turtle
+from turtle import *
 
 
 class Figure:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self._vis = False
+        speed(500000000000000000000000000000000000000000000000)
+
     def zobr(self):
-        a.color('red')
+        if not self._vis:
+            self._vis = True
+            color('red')
+            self.draw()
+
 
     def stirannya(self):
-        if b.draw():
-            b.color('white')
-            b.draw()
+        if self._vis:
+            self._vis = False
+            color('white')
+
+            self.draw()
 
     def setpos(self,x ,y):
-        a.up()
-        a.setposition(x, y)
-        a.down()
+        up()
+        setposition(x, y)
+        down()
 
     def getpos(self):
         print(a.pos())
 
 
     def color(self, color):
-        a.color(color)
+        color(color)
 
     def draw(self):
-        a.down()
+        down()
 class Kolo(Figure):
+    def __init__(self,x ,y):
+        super().__init__(x, y)
+        self.x = x
+        self.y = y
+
     def draw(self):
-        a.circle(10)
+        up()
+        setposition(self.x, self.y)
+        down()
+        circle(10)
 class Trikutnik(Figure):
     def draw(self):
         for i in range(3):
-            a.forward(side2)
-            a.left(120)
+            forward(100)
+            left(120)
 class Pryamokutnik(Figure):
+    def __init__(self,x ,y):
+        super().__init__(x, y)
+        self.x = x
+        self.y = y
+
+
     def draw(self):
+        up()
+        setposition(self.x, self.y)
+        down()
         for i in range(2):
-            a.forward(100)
-            a.left(90)
-            a.forward(50)
-            a.left(90)
+            forward(100)
+            left(90)
+            forward(50)
+            left(90)
+
 class Kvadrat(Pryamokutnik):
     def draw(self):
         for i in range(4):
-            a.forward()
-            a.left(90)
+            forward(100)
+            left(90)
 class Trapezia(Figure):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.x = x
+        self.y = y
+
     def draw(self, n = 0):
-        a.left(180)
-        a.forward(50)
-        a.right(120)
-        a.forward(30)
-        a.right(60)
-        a.forward(50)
-        a.up()
-        a.setpos(0, n)
-        a.down()
-        a.forward(50)
-        a.left(120)
-        a.forward(30)
-        a.left(60)
-        a.forward(50)
+        up()
+        setposition(self.x, self.y)
+        down()
+        forward(50)
+        left(120)
+        forward(50)
+        left(60)
+        forward(50)
+        setpos(-50 + self.x,n + self.y)
+        left(180)
+        setpos(0 + self.x,n + self.y)
 
 
-class Car:
+
+
+
+
+class Car(Figure):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.x = x
+        self.y = y
+
+
     def draw(self):
-        a = Kolo()
-        b = Pryamokutnik()
-        c = Trapezia()
-        b.setpos(-50,-25)
+        a = Kolo(self.x, self.y)
+        a1 = Kolo(self.x + 50, self.y)
+        b = Pryamokutnik(self.x - 25, 20 + self.y)
+        c = Trapezia(self.x + 25, 70 + self.y)
+        a.draw()
         b.draw()
-        a.setpos(-25, -45)
-        a.draw()
-        a.setpos(25, -45)
-        a.draw()
-        c.setpos(0, 25)
-        c.draw(25)
+        a1.draw()
+        c.draw()
 
 
 
-a = turtle.Turtle()
-w = turtle.Screen()
 
 
-l = Car()
-l.draw()
 
-w.mainloop()
+
+
+
+for i in range(0, 101, 10):
+    l = Car(-i, i)
+    l.zobr()
+    l.stirannya()
+
+mainloop()
+
+
+
